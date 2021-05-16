@@ -9,9 +9,10 @@ class ZipMap extends React.Component {
   }
 
   render() {
-    return ()
+    return (
       < div id = "af-zip-map" > map coming soon.
 </div >
+    )
 
 
   }

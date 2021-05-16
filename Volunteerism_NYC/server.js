@@ -2,6 +2,8 @@ const express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let axios = require('axios');
+const db = require('./database/index.js');
+
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));

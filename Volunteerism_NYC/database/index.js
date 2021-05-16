@@ -3,6 +3,10 @@ const mongoUri = 'mongodb://localhost/volunteerism'
 
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
-  useNewUnifiedTopology: true,
+  useUnifiedTopology: true,
   useCreateIndex: true
-})
+});
+
+const db = mongoose.connection;
+
+module.exports = db;

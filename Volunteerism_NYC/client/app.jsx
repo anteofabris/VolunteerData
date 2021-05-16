@@ -12,12 +12,17 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      isChosen: false
+      isChosen: false,
       dataReceived: false
     }
   }
 
   componentDidMount() {
+
+    axios.get('/rankings')
+    .then((response) => {
+      console.log('got response: ', response)
+    })
 
   }
 
@@ -29,6 +34,7 @@ class App extends React.Component {
     } else {
       return (<div>LOADING SITE</div>);
     }
+    return (<div>nothing</div>);
   }
 }
 
