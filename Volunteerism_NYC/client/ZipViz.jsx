@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Zip extends React.Component {
+class ZipViz extends React.Component {
   constructor(props) {
     super(props)
     const general = {
@@ -33,4 +33,4 @@ class Zip extends React.Component {
   }
 }
 
-export default Zip;
+export default ZipViz;

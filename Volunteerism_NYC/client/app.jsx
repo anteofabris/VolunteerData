@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import axios from 'axios';
-import ChooseCity from'./ChooseCity.jsx';
+import ChooseCity from './ChooseCity.jsx';
 import YourCity from './YourCity.jsx';
 
 
@@ -13,29 +13,42 @@ class App extends React.Component {
 
     this.state = {
       isChosen: false,
-      dataReceived: false
+      dataReceived: false,
+      rankList: []
     }
   }
 
   componentDidMount() {
 
     axios.get('/rankings')
-    .then((response) => {
-      console.log('got response: ', response)
-    })
+      .then((response) => {
+        console.log('got response: ', response)
+        this.setState({
+          isChosen: true,
+          dataReceived: true,
+          rankList: response.data
+        })
+      })
+      .catch((err) => {
+        console.log('err in app.jsx: ', err)
+      })
 
   }
 
-  render () {
+  render() {
     if (!this.state.isChosen) {
 
     } else if (this.state.dataReceived) {
-    return (<div>App!</div>)
+      return (<div>
+        <YourCity rankList={this.state.rankList} />
+      </div>)
     } else {
-      return (<div>LOADING SITE</div>);
+      return (<div>
+        <YourCity rankList={this.state.rankList} />
+      </div>);
     }
     return (<div>nothing</div>);
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

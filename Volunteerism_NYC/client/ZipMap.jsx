@@ -9,7 +9,8 @@ class ZipMap extends React.Component {
 
   render() {
     return (
-      < div id = "af-zip-map" > map coming soon.
+      < div id = "af-zip-map" >
+        {this.props.rankList}
 </div >
     )
 

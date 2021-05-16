@@ -11,8 +11,8 @@ class YourCity extends React.Component {
   render() {
     return (
       < div id = "af-your-city" >
-  <ZipMap/>
-  <ZipRank/>
+  <ZipMap rankList={this.props.rankList}/>
+  <ZipRank rankList={this.props.rankList}/>
 </div >
     )
   }
