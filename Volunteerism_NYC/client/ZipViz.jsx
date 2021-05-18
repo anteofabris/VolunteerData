@@ -21,7 +21,7 @@ class ZipViz extends React.Component {
   }
 
   handleMouseOver() {
-
+    // console.log('this zip:', this.props.zip)
     this.setState({
       fill: "blue"
     })
@@ -29,10 +29,10 @@ class ZipViz extends React.Component {
 
   handleMouseOut() {
     if (!this.state.clicked) {
-    this.setState({
-      fill: "white"
-    })
-  }
+      this.setState({
+        fill: "white"
+      })
+    }
   }
 
   changeShape() {
@@ -64,9 +64,13 @@ class ZipViz extends React.Component {
     return (
       <svg onMouseOver={() => {
         this.handleMouseOver()
+        this.props.handleHover(this.props.zip)
 
-      }} onMouseOut={this.handleMouseOut} id="af-current-zip" xmlns="http://www.w3.org/2000/svg" stroke="black" fill={this.state.fill} version="1.2" baseProfile="tiny" strokeLinecap="round" strokeLinejoin="round">
-        <path onClick={ () => {
+      }} onMouseOut={() => {
+        this.handleMouseOut()
+        this.props.handleHoverOut()
+      }} id="af-current-zip" xmlns="http://www.w3.org/2000/svg" stroke="black" fill={this.state.fill} version="1.2" baseProfile="tiny" strokeLinecap="round" strokeLinejoin="round">
+        <path onClick={() => {
           this.changeShape()
           this.props.click(this.props.zip)
         }} d={this.state.path} />

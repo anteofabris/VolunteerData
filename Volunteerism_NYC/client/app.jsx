@@ -19,7 +19,7 @@ class App extends React.Component {
     this.state = {
       isChosen: false,
       dataReceived: false,
-      rankList: [],
+      zipList: [],
       hoveredZip: null,
       selectedZip: null
     }
@@ -35,7 +35,7 @@ class App extends React.Component {
         this.setState({
           isChosen: true,
           dataReceived: true,
-          rankList: response.data
+          zipList: response.data
         })
       })
       .catch((err) => {
@@ -60,7 +60,7 @@ class App extends React.Component {
 
     if (this.state.dataReceived) {
       return (<div id="app">
-        <YourCity click={this.handleClick} rankList={this.state.rankList} />
+        <YourCity click={this.handleClick} zipList={this.state.zipList} />
         <ZipContainer zip={this.state.selectedZip} />
       </div>)
     } else {
@@ -76,12 +76,12 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 // } else if (this.state.dataReceived) {
 //   return (<div id="app">
-//     <YourCity click={this.handleClick} rankList={this.state.rankList} />
+//     <YourCity click={this.handleClick} zipList={this.state.zipList} />
 //     <ZipContainer zip={this.state.zip}/>
 //   </div>)
 // } else {
 //   return (<div id="app">
-//     <YourCity rankList={this.state.rankList} />
+//     <YourCity zipList={this.state.zipList} />
 //     <ZipContainer zip={this.state.zip}/>
 //   </div>);
 // }

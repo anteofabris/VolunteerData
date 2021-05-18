@@ -2,20 +2,46 @@ import React from 'react';
 
 import ZipMap from './ZipMap.jsx';
 import ZipRank from './ZipRank.jsx';
+import TopTitle from './TopTitle.jsx';
 
 class YourCity extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      currentZip: null
+    }
+    this.handleHover = this.handleHover.bind(this)
+    this.handleHoverOut = this.handleHoverOut.bind(this)
+  }
+
+  handleHover(zip) {
+    this.setState({
+      currentZip: zip
+    })
+  }
+
+  handleHoverOut() {
+    this.setState({
+      currentZip: null
+    })
   }
 
   render() {
     // console.log('rhis is rankList: ', this.props.rankList)
+
     return (
-      < div id = "af-your-city" >
-  <ZipMap click={this.props.click} rankList={this.props.rankList}/>
-  <ZipRank click={this.props.click} rankList={this.props.rankList}/>
-</div >
+      < div id="af-your-city" >
+        {/* <TopTitle zip={this.state.currentZip}/> */}
+        <ZipMap click={this.props.click} zipList={this.props.zipList} handleHover={this.handleHover} handleHoverOut={this.handleHoverOut} />
+        <ZipRank click={this.props.click} zipList={this.props.zipList} />
+      </div >
     )
+
+
+
+
+
   }
 }
 

@@ -1,7 +1,14 @@
 #app {
   /* display: inline-block */
+  font-family: 'Shrikhand', cursive;
   display: inline-flex;
   width: 100%
+}
+
+#top-title {
+  position: absolute;
+  border: 5px solid brown;
+  margin-left: 400px;
 }
 
 #zip-container {
@@ -46,6 +53,7 @@
 }
 
 #af-zip-rank {
+  font-family: 'Shrikhand', cursive;
   position: absolute;
   display: grid;
   grid-gap: 20px;
@@ -71,4 +79,8 @@ height: 800px;
   background-color: yellow;
   color: yellow;
 
+}
+
+#judgement {
+  float: right;
 }

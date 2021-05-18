@@ -11,7 +11,7 @@ class ZipRank extends React.Component {
   render() {
     return (
       < div id = "af-zip-rank" >
-        {this.props.rankList.map((zip, index) =>
+        {this.props.zipList.map((zip, index) =>
         <Zip zip={zip} key={index} rank={index + 1}/>
         )}
 </div >

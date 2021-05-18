@@ -14,6 +14,7 @@ class ChatContainer extends React.Component {
     }
     this.submitMessage = this.submitMessage.bind(this)
     this.getFeed = this.getFeed.bind(this)
+    this.changeScore = this.changeScore.bind(this)
 
   }
 
@@ -65,6 +66,20 @@ class ChatContainer extends React.Component {
     })
   }
 
+  changeScore(id, num) {
+    //console.log('current_id: ', id)
+    var obj = {num: num}
+    axios.post(`/messages/changeScore/${id}`, obj)
+    .then(() => {
+      console.log('score changed!')
+      this.getFeed()
+    })
+    .catch((err) => {
+      console.log('err in changescore', err)
+    })
+
+  }
+
 
   render() {
 
@@ -79,7 +94,7 @@ class ChatContainer extends React.Component {
         <input type="submit" value="Post"></input>
       </form>
       {this.state.feed.map((msg, index) => {
-        return <MessageContainer message={msg} key={index}/>
+        return <MessageContainer changeScore={this.changeScore} message={msg} key={index}/>
       })}
 
     </div>)

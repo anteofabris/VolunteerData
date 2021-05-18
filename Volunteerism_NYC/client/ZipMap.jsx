@@ -14,6 +14,7 @@ import {
 import { geoAlbersUsa } from "d3-geo";
 import axios from 'axios';
 import ZipViz from './ZipViz.jsx';
+import TopTitle from './TopTitle.jsx';
 
 class ZipMap extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ if (this.state.dataReceived) {
       <svg width="1000" height="800" viewBox="0 0 800 555">
         <g id="nyc-zip-geojson">
           {this.state.zipPaths.map((zip, index) => {
-           return <ZipViz click={this.props.click} path={zip.zipPath} zip={zip.zip_code} key={index} index={index}/>
+           return <ZipViz handleHoverOut={this.props.handleHoverOut} handleHover={this.props.handleHover} click={this.props.click} path={zip.zipPath} zip={zip.zip_code} key={index} index={index}/>
           })}
 
         </g>

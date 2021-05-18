@@ -40,7 +40,7 @@ app.get('/zipPaths', (req, res) => {
 // GET request for messages by given zip code
 app.get('/messages/:zip_code', (req, res) => {
   var zip = req.params.zip_code
-  console.log('in app.get messages, req.body: ', req.params)
+ // console.log('in app.get messages, req.body: ', req.params)
   messages.getAll(zip, (err, data) => {
     if (err) {
       console.log('error getting messages in app.get: ', err)
@@ -53,10 +53,23 @@ app.get('/messages/:zip_code', (req, res) => {
 // GET request for community organizations by zip code
 app.get('/orgs/:zip_code', (req, res) => {
   var zip = req.params.zip_code
-  console.log('in app.get orgs, req.body: ', req.params)
+  //console.log('in app.get orgs, req.body: ', req.params)
   orgs.getAll(zip, (err, data) => {
     if (err) {
       console.log('error in orgs.getAll: ', err)
+    } else {
+      res.send(data)
+    }
+  })
+})
+
+// GET request for top title by zip code
+app.get('/topTitle/:zip_code', (req, res) => {
+  var zip = req.params.zip_code
+  //console.log('in app.get for top title')
+  messages.findTopTitle(zip, (err, data) => {
+    if (err) {
+      console.log('error in messages.findTopTitle: ', err)
     } else {
       res.send(data)
     }
@@ -74,6 +87,21 @@ app.post('/messages', (req, res) => {
     }
   })
 
+})
+
+// POST request to change a message's score
+app.post('/messages/changeScore/:messageId', (req, res) => {
+// console.log('this is req.body in changescore: ', req.body)
+// console.log('this is req.params in changescore: ', req.params)
+var id = req.params.messageId
+var num = req.body.num
+  messages.changeScore(id, num, (err) => {
+    if (err) {
+      console.log('error in app.post changeScore:', err)
+    } else {
+      res.send()
+    }
+  })
 })
 
 const port = 8000;
