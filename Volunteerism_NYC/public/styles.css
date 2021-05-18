@@ -14,9 +14,21 @@
 }
 
 #chat-container {
-  width: 60%;
-  height: 60%;
+  width: 100%;
+  height: 40%;
   border: 3px solid red;
+  overflow: scroll;
+}
+
+#message-container {
+  border: 3px solid green;
+}
+
+#orgs-list {
+  width: 100%;
+  height: 50%;
+  border: 3px solid blue;
+  overflow: scroll;
 }
 
 #af-zip-article {

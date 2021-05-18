@@ -62,7 +62,10 @@ class ZipViz extends React.Component {
   render() {
 
     return (
-      <svg onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} id="af-current-zip" xmlns="http://www.w3.org/2000/svg" stroke="black" fill={this.state.fill} version="1.2" baseProfile="tiny" strokeLinecap="round" strokeLinejoin="round">
+      <svg onMouseOver={() => {
+        this.handleMouseOver()
+
+      }} onMouseOut={this.handleMouseOut} id="af-current-zip" xmlns="http://www.w3.org/2000/svg" stroke="black" fill={this.state.fill} version="1.2" baseProfile="tiny" strokeLinecap="round" strokeLinejoin="round">
         <path onClick={ () => {
           this.changeShape()
           this.props.click(this.props.zip)

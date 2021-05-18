@@ -7,13 +7,16 @@ class Org extends React.Component {
 
   render() {
     return (<div id="org">
- <div className="name">
-         {this.props.name}
+  <div className="link">
+       <a href={this.props.org.website} target="_blank">{this.props.org.org_name}</a>
        </div>
        <div className="desc">
-         {this.props.website}
+         {this.props.org.description}
        </div>
+
 
     </div>)
   }
 }
+
+export default Org;
