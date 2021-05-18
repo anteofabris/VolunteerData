@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom'
 import axios from 'axios';
 import ChooseCity from './ChooseCity.jsx';
 import YourCity from './YourCity.jsx';
+import ZipContainer from './ZipContainer.jsx';
 
+// // import L from 'leaflet';
+// // import 'leaflet/dist/leaflet.css';
+// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+// // import mapdata from '../data/nyc-zip-geojson.json';
 
 
 
@@ -14,13 +19,17 @@ class App extends React.Component {
     this.state = {
       isChosen: false,
       dataReceived: false,
-      rankList: []
+      rankList: [],
+      hoveredZip: null,
+      selectedZip: null
     }
+    this.renderHoveredZip = this.renderHoveredZip.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
 
-    axios.get('/rankings')
+    axios.get('/zipPaths')
       .then((response) => {
         console.log('got response: ', response)
         this.setState({
@@ -35,20 +44,46 @@ class App extends React.Component {
 
   }
 
-  render() {
-    if (!this.state.isChosen) {
+  renderHoveredZip(e) {
 
-    } else if (this.state.dataReceived) {
-      return (<div>
-        <YourCity rankList={this.state.rankList} />
+
+  }
+
+  handleClick(zip) {
+    console.log('clicked on zip!', zip)
+    this.setState({
+      selectedZip: zip
+    })
+  }
+
+  render() {
+
+    if (this.state.dataReceived) {
+      return (<div id="app">
+        <YourCity click={this.handleClick} rankList={this.state.rankList} />
+        <ZipContainer zip={this.state.selectedZip} />
       </div>)
     } else {
-      return (<div>
-        <YourCity rankList={this.state.rankList} />
-      </div>);
+      return null;
     }
-    return (<div>nothing</div>);
+
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+// if (!this.state.isChosen) {
+
+// } else if (this.state.dataReceived) {
+//   return (<div id="app">
+//     <YourCity click={this.handleClick} rankList={this.state.rankList} />
+//     <ZipContainer zip={this.state.zip}/>
+//   </div>)
+// } else {
+//   return (<div id="app">
+//     <YourCity rankList={this.state.rankList} />
+//     <ZipContainer zip={this.state.zip}/>
+//   </div>);
+// }
+// return (<div>nothing</div>);
+// }

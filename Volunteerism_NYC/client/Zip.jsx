@@ -12,11 +12,11 @@ class Zip extends React.Component {
 
 
   render () {
-    return (<div id="af-zip-article">
+    return (<div id="af-zip-article" onClick={() => this.props.click(this.props.zip)}>
      <div id="zip-name">
       <strong> {this.props.zip.zip_code} </strong>
      </div>
-     <div id="population">
+     {/* <div id="population">
      <div className="desc-small">
          Population:
        </div>
@@ -27,10 +27,11 @@ class Zip extends React.Component {
          Rank:
        </div>
        {this.props.rank}
-     </div>
+     </div> */}
 
     </div>)
   }
+
 }
 
 export default Zip;

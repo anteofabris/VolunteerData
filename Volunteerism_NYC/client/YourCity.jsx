@@ -9,10 +9,11 @@ class YourCity extends React.Component {
   }
 
   render() {
+    // console.log('rhis is rankList: ', this.props.rankList)
     return (
       < div id = "af-your-city" >
-  <ZipMap rankList={this.props.rankList}/>
-  <ZipRank rankList={this.props.rankList}/>
+  <ZipMap click={this.props.click} rankList={this.props.rankList}/>
+  <ZipRank click={this.props.click} rankList={this.props.rankList}/>
 </div >
     )
   }
