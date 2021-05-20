@@ -75,7 +75,7 @@ class ChatContainer extends React.Component {
       this.getFeed()
     })
     .catch((err) => {
-      console.log('err in changescore', err)
+      console.log('err in ChatContainer changescore', err)
     })
 
   }
@@ -87,24 +87,24 @@ class ChatContainer extends React.Component {
     if (this.state.feed) {
       if (this.state.feed[0]) {
     return (<div id="chat-container">
-     " {this.state.feed[0].title} "
+     Message your neighbors!
       <form onSubmit={this.submitMessage}>
-        <input type="text" placeholder="Title"></input>
-        <input type="text" placeholder="Message"></input>
-        <input type="submit" value="Post"></input>
+        <input type="text" placeholder="Title"></input><br/>
+        <input id="message-box" type="text" placeholder="Message"></input><br/>
+        <input id="submit" type="submit" value="Post"></input>
       </form>
       {this.state.feed.map((msg, index) => {
-        return <MessageContainer changeScore={this.changeScore} message={msg} key={index}/>
+        return <MessageContainer toggleComments={this.props.toggleComments} changeScore={this.changeScore} message={msg} key={index}/>
       })}
 
     </div>)
       } else {
         return (<div id="chat-container">
-        GET THE CHAT GOING
+        Get the conversation started!
         <form onSubmit={this.submitMessage}>
-          <input type="text" placeholder="Title"></input>
-          <input type="text" placeholder="Message"></input>
-          <input type="submit" value="Post"></input>
+          <input type="text" placeholder="Title"></input><br/>
+          <input id="message-box" type="text" placeholder="Message"></input><br/>
+          <input id="submit" type="submit" value="Post"></input>
         </form>
 
       </div>)

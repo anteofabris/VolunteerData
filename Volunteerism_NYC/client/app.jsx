@@ -4,6 +4,9 @@ import axios from 'axios';
 import ChooseCity from './ChooseCity.jsx';
 import YourCity from './YourCity.jsx';
 import ZipContainer from './ZipContainer.jsx';
+import Comments from './Comments.jsx';
+import IntroBar from './IntroBar.jsx';
+
 
 // // import L from 'leaflet';
 // // import 'leaflet/dist/leaflet.css';
@@ -21,10 +24,13 @@ class App extends React.Component {
       dataReceived: false,
       zipList: [],
       hoveredZip: null,
-      selectedZip: null
+      selectedZip: null,
+      commentsStyle: { width: '0px' },
+      selectedMessage: null,
     }
     this.renderHoveredZip = this.renderHoveredZip.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.toggleComments = this.toggleComments.bind(this)
   }
 
   componentDidMount() {
@@ -44,6 +50,20 @@ class App extends React.Component {
 
   }
 
+  toggleComments(msg) {
+    if (this.state.commentsStyle.width === '0px') {
+      this.setState({
+        commentsStyle: { width: '1200px' },
+        selectedMessage: msg
+      })
+    } else {
+      this.setState({
+        commentsStyle: { width: '0px' },
+        selectedMessage: null
+      })
+    }
+  }
+
   renderHoveredZip(e) {
 
 
@@ -60,8 +80,12 @@ class App extends React.Component {
 
     if (this.state.dataReceived) {
       return (<div id="app">
-        <YourCity click={this.handleClick} zipList={this.state.zipList} />
-        <ZipContainer zip={this.state.selectedZip} />
+        <IntroBar />
+        <div id="rest-of-app">
+          <YourCity click={this.handleClick} zipList={this.state.zipList} />
+          <ZipContainer toggleComments={this.toggleComments} zip={this.state.selectedZip} />
+          <Comments message={this.state.selectedMessage} commentsStyle={this.state.commentsStyle} />
+        </div>
       </div>)
     } else {
       return null;

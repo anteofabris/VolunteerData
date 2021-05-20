@@ -9,13 +9,14 @@ class YourCity extends React.Component {
     super(props)
 
     this.state = {
-      currentZip: null
+      currentZip: '0'
     }
     this.handleHover = this.handleHover.bind(this)
     this.handleHoverOut = this.handleHoverOut.bind(this)
   }
 
   handleHover(zip) {
+    console.log('zip: ', zip)
     this.setState({
       currentZip: zip
     })
@@ -23,7 +24,7 @@ class YourCity extends React.Component {
 
   handleHoverOut() {
     this.setState({
-      currentZip: null
+      currentZip: '0'
     })
   }
 
@@ -32,9 +33,9 @@ class YourCity extends React.Component {
 
     return (
       < div id="af-your-city" >
-        {/* <TopTitle zip={this.state.currentZip}/> */}
+        <TopTitle zip={this.state.currentZip}/>
         <ZipMap click={this.props.click} zipList={this.props.zipList} handleHover={this.handleHover} handleHoverOut={this.handleHoverOut} />
-        <ZipRank click={this.props.click} zipList={this.props.zipList} />
+        {/* <ZipRank click={this.props.click} zipList={this.props.zipList} /> */}
       </div >
     )
 

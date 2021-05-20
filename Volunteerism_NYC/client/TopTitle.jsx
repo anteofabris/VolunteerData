@@ -36,8 +36,19 @@ class TopTitle extends React.Component {
   }
 
   render() {
-    if (this.props.zip) {
-      return (<div id="top-title">{this.state.title}</div>)
+
+    if (this.state.title !== null) {
+      if (this.state.title.length > 0) {
+        var fSize = (this.state.title.length > 60 ? 300 : 500)
+       // var fSize = 422500 / (176.04 * ( (11 + this.state.title.length) / 12 ) )
+      return (<div id="top-title" style={{fontSize: `${fSize}%`}} >
+       "{this.state.title}"
+        </div>)
+      } else {
+        return (<div id="top-title">
+        {this.state.title}
+        </div>)
+      }
     } else {
       return null
     }

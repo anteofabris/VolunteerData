@@ -22,9 +22,10 @@ class ZipMap extends React.Component {
 
     this.state = {
       dataReceived: false,
-      zipPaths: null
+      zipPaths: null,
+      zipSelected: null
     }
-
+    this.change = this.change.bind(this)
   }
 
 
@@ -38,29 +39,35 @@ class ZipMap extends React.Component {
           dataReceived: true
         })
       })
+  }
 
-
+  change(zip) {
+    console.log('zip! ', zip)
+this.setState({
+  zipSelected: zip
+})
   }
 
   render() {
 
-if (this.state.dataReceived) {
-  // console.log('zip paths: ', this.state.zipPaths)
-    return (<div id="af-map">
-      <svg width="1000" height="800" viewBox="0 0 800 555">
-        <g id="nyc-zip-geojson">
-          {this.state.zipPaths.map((zip, index) => {
-           return <ZipViz handleHoverOut={this.props.handleHoverOut} handleHover={this.props.handleHover} click={this.props.click} path={zip.zipPath} zip={zip.zip_code} key={index} index={index}/>
-          })}
+    if (this.state.dataReceived) {
+      // console.log('zip paths: ', this.state.zipPaths)
+      return (<div id="af-map">
+        <svg width="1000" height="800" viewBox="0 0 800 555">
 
-        </g>
-      </svg>
+          <g id="nyc-zip-geojson">
+            {this.state.zipPaths.map((zip, index) => {
+              return <ZipViz zipSelected={this.state.zipSelected} change={this.change} handleHoverOut={this.props.handleHoverOut} handleHover={this.props.handleHover} click={this.props.click} path={zip.zipPath} zip={zip.zip_code} key={index} index={index} />
+            })}
 
-    </div>
-    );
-        } else {
-          return null;
-        }
+          </g>
+        </svg>
+
+      </div>
+      );
+    } else {
+      return null;
+    }
 
 
   }
